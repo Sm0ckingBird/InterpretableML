@@ -13,21 +13,21 @@ DOWNLOAD_MNIST = False
 
 
 train_data = torchvision.datasets.MNIST(
-    root='./mnist/',
+    root='../mnist/',
     train=True,
     transform=torchvision.transforms.ToTensor(),
     download=DOWNLOAD_MNIST,
 )
 
 
-test_data = torchvision.datasets.MNIST(root='./mnist/', train=False)
+test_data = torchvision.datasets.MNIST(root='../mnist/', train=False)
 
 # 批训练 50samples, 1 channel, 28x28 (50, 1, 28, 28)
 train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
 
 # 为了节约时间, 我们测试时只测试前2000个
-test_x = torch.unsqueeze(test_data.test_data, dim=1).type(torch.FloatTensor)[:2000]/255.   # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
-test_y = test_data.test_labels[:2000]
+test_x = torch.unsqueeze(test_data.data, dim=1).type(torch.FloatTensor)[:2000]/255.   # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
+test_y = test_data.targets[:2000]
 
 
 class CNN(nn.Module):
