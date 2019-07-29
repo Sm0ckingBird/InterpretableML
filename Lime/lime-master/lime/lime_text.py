@@ -316,39 +316,6 @@ class LimeTextExplainer(object):
                  mask_string=None,
                  random_state=None,
                  char_level=False):
-        """Init function.
-
-        Args:
-            kernel_width: kernel width for the exponential kernel.
-            kernel: similarity kernel that takes euclidean distances and kernel
-                width as input and outputs weights in (0,1). If None, defaults to
-                an exponential kernel.
-            verbose: if true, print local prediction values from linear model
-            class_names: list of class names, ordered according to whatever the
-                classifier is using. If not present, class names will be '0',
-                '1', ...
-            feature_selection: feature selection method. can be
-                'forward_selection', 'lasso_path', 'none' or 'auto'.
-                See function 'explain_instance_with_data' in lime_base.py for
-                details on what each of the options does.
-            split_expression: Regex string or callable. If regex string, will be used with re.split.
-                If callable, the function should return a list of tokens.
-            bow: if True (bag of words), will perturb input data by removing
-                all occurrences of individual words or characters.
-                Explanations will be in terms of these words. Otherwise, will
-                explain in terms of word-positions, so that a word may be
-                important the first time it appears and unimportant the second.
-                Only set to false if the classifier uses word order in some way
-                (bigrams, etc), or if you set char_level=True.
-            mask_string: String used to mask tokens or characters if bow=False
-                if None, will be 'UNKWORDZ' if char_level=False, chr(0)
-                otherwise.
-            random_state: an integer or numpy.RandomState that will be used to
-                generate random numbers. If None, the random state will be
-                initialized using the internal numpy seed.
-            char_level: an boolean identifying that we treat each character
-                as an independent occurence in the string
-        """
 
         if kernel is None:
             def kernel(d, kernel_width):
